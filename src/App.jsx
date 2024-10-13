@@ -1,35 +1,39 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.jsx
+import React, { useContext } from 'react';
+import { ThemeContext } from './context/ThemeContext'; // Named import
+// other imports...
 
 function App() {
-  const [count, setCount] = useState(0)
+  const { theme } = useContext(ThemeContext);
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div
+      className={`min-h-screen ${theme.layout === 'horizontal' ? 'flex-row' : 'flex-col'
+        } bg-${theme.color}-100`}
+      style={{
+        borderRadius: `${theme.borderRadius}px`,
+      }}
+    >
+      {/* Sidebar */}
+      <div
+        className={`${theme.sidebar === 'mini' ? 'w-16' : 'w-64'
+          } bg-gray-200 p-4`}
+      >
+        Sidebar Content
       </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
+
+      {/* Main Content */}
+      <div className={`flex-1 p-8`}>
+        <h1 className="text-3xl font-bold text-${theme.color}-500">Dashboard</h1>
+        <p className="mt-4">This is the main content area.</p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+
+      {/* Theme Panel */}
+      <div className="fixed bottom-4 right-4">
+        <ThemePanel />
+      </div>
+    </div>
+  );
 }
 
-export default App
+export default App; // Default export
