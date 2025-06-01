@@ -8,7 +8,13 @@ app.listen(8000, () => {
   console.log("Server is running on port 8000");
 });
 
-app.get("/hello", (req, res, next) => {
+const sipleLogger = (req, res, next) => {
+  console.log(`${req.method} -- ${req.url} -- ${new Date().toISOString()}`);
+  next();
+};
+
+app.get("/hello",sipleLogger, (req, res, next) => {
+  
   res.json({
     message: "Hello, World!",
   });
