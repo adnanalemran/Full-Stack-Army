@@ -10,6 +10,12 @@ app.listen(8000, () => {
 
 const sipleLogger = (req, res, next) => {
   console.log(`${req.method} -- ${req.url} -- ${new Date().toISOString()}`);
+  if (req.query.name === "ontor"){
+    return res.json({
+      message: "Hello Ontor!",
+    });
+  }
+ 
   next();
 };
 
