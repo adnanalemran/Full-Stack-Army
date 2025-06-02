@@ -11,12 +11,19 @@ class MyDB {
   findById(id) {
     return this.tickets.find((ticket) => ticket.id === id);
   }
-  //creates a new ticket and returns the ticket object (  ticket properties)
+
+ /**
+  * Create and save a new ticket 
+  * @param {string} username 
+  * @param {number} price 
+  * @returns 
+  */
   create(username, price) {
     const ticket = new Ticket(username, price);
     this.tickets.push(ticket);
     return ticket;
   }
+  
 
   //sell multiple tickets
   bulkCreate(tickets) {
