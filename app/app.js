@@ -4,10 +4,10 @@ require("dotenv").config("../.env");
 const express = require("express");
  const { notFoundHandler, errorHandler } = require("./error");
 
-
+// Import middleware and routes
 const app = express();
 
-//config morgan
+// Middleware setup
 app.use(require("./middleware"));
 app.use(require("./route"));
 app.use(notFoundHandler);
