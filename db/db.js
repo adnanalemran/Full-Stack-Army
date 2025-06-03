@@ -16,23 +16,26 @@ class MyDB {
   * Create and save a new ticket 
   * @param {string} username 
   * @param {number} price 
-  * @returns 
+  * @returns {Ticket} - The created ticket object.
+  * 
   */
   create(username, price) {
     const ticket = new Ticket(username, price);
     this.tickets.push(ticket);
     return ticket;
   }
-  
 
-  //sell multiple tickets
-  bulkCreate(tickets) {
-    const createdTickets = tickets.map((ticket) => {
-      const newTicket = new Ticket(ticket.username, ticket.price);
-      this.tickets.push(newTicket);
-      return newTicket;
-    });
-    return createdTickets;
+
+    
+   /**
+    * crate multiple tickate for single user
+    * @param  {string} username - The username of the ticket owner.
+    * @param  {number} price - The price of the ticket.
+    * @param  {number} quantity - The number of tickets to create.
+    * @returns 
+    */
+  bulkCreate(username, price, quantity) {
+    
   }
 
   // returns the ticket object (  ticket properties)
